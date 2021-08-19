@@ -12,20 +12,11 @@
         "free",
         "siegsb"
     ],
-    "homepage": "https://github.com/statickidz/php-google-translate-free/",
+    "homepage": "https://goxabh.github.io/translater/",
     "license": "GPL-3.0+",
     "authors": [
         {
-            "name": "Adrián Barrio Andrés",
-            "email": "statickidz@gmail.com",
-            "homepage": "https://statickidz.com",
-            "role": "Developer"
-        },
-        {
-            "name": "Paris Niarfe Baltazar Salguero",
-            "email": "sieg.sb@gmail.com",
-            "homepage": "http://www.pbaltazar.com",
-            "role": "Developer"
+            
         }
     ],
     "support": {
