@@ -1,32 +1,27 @@
 <?php
 
-$curl = curl_init();
+$request = new HttpRequest();
+$request->setUrl('https://google-translate1.p.rapidapi.com/language/translate/v2');
+$request->setMethod(HTTP_METH_POST);
 
-curl_setopt_array($curl, [
-	CURLOPT_URL => "https://google-translate1.p.rapidapi.com/language/translate/v2",
-	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_FOLLOWLOCATION => true,
-	CURLOPT_ENCODING => "",
-	CURLOPT_MAXREDIRS => 10,
-	CURLOPT_TIMEOUT => 30,
-	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	CURLOPT_CUSTOMREQUEST => "POST",
-	CURLOPT_POSTFIELDS => "q=Hello%2C%20world!&target=es&source=en",
-	CURLOPT_HTTPHEADER => [
-		"accept-encoding: application/gzip",
-		"content-type: application/x-www-form-urlencoded",
-		"x-rapidapi-host: google-translate1.p.rapidapi.com",
-		"x-rapidapi-key: bb4818f758msh93b10c33927074ap171120jsn4023977ad1cb"
-	],
+$request->setHeaders([
+	'content-type' => 'application/x-www-form-urlencoded',
+	'accept-encoding' => 'application/gzip',
+	'x-rapidapi-key' => 'bb4818f758msh93b10c33927074ap171120jsn4023977ad1cb',
+	'x-rapidapi-host' => 'google-translate1.p.rapidapi.com'
 ]);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$request->setContentType('application/x-www-form-urlencoded');
+$request->setPostFields([
+	'q' => 'Hello, world!',
+	'target' => 'es',
+	'source' => 'en'
+]);
 
-curl_close($curl);
+try {
+	$response = $request->send();
 
-if ($err) {
-	echo "cURL Error #:" . $err;
-} else {
-	echo $response;
+	echo $response->getBody();
+} catch (HttpException $ex) {
+	echo $ex;
 }
